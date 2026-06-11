@@ -1,0 +1,372 @@
+:root {
+    /* پالت رنگی سازمانی و مینیمال */
+    --bg-body: #0f0f11;       /* مشکی مایل به خاکستری عمیق */
+    --bg-panel: #18181b;      /* رنگ کارت‌ها */
+    --bg-hover: #27272a;
+    --border: #27272a;
+    
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    
+    --accent: #3b82f6;        /* آبی ملایم و حرفه‌ای */
+    --accent-glow: rgba(59, 130, 246, 0.15);
+
+    --font-main: 'Vazirmatn', sans-serif;
+    --ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* پس زمینه نهایتا ساده */
+.bg-decoration {
+    position: fixed;
+    top: -20%;
+    left: -20%;
+    width: 50%;
+    height: 50%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+.bg-decoration-2 {
+    position: fixed;
+    bottom: -20%;
+    right: -20%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* نوار کناری - طراحی ساده و جدی */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-body);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 1.5rem;
+    flex-shrink: 0;
+}
+
+.brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 3rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.brand span { color: var(--accent); }
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s var(--ease);
+}
+
+.nav-item svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5;
+    stroke: currentColor;
+    fill: none;
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-panel);
+}
+
+.nav-item.active {
+    color: var(--accent);
+    background-color: var(--bg-panel);
+    border-right: 3px solid var(--accent); /* نشانگر ساده */
+    border-radius: 0 6px 6px 0;
+}
+
+/* محتوای اصلی */
+.main-content {
+    flex: 1;
+    padding: 3rem 4rem;
+    overflow-y: auto;
+    position: relative;
+}
+
+.page-section {
+    display: none;
+    max-width: 1000px;
+    margin: 0 auto;
+    animation: slideUp 0.6s var(--ease) forwards;
+}
+
+.page-section.active {
+    display: block;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent);
+}
+
+p {
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+/* کارت‌ها - استایل مات و بدون شیشه */
+.card {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    border-color: #3f3f46;
+}
+
+/* بخش درباره من */
+.profile-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: filter 0.3s;
+}
+.profile-img:hover {
+    filter: grayscale(0%);
+}
+
+/* اهداف - استایل لیستی */
+.goal-item {
+    display: flex;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+}
+.goal-item:last-child { border: none; }
+.goal-year {
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: 700;
+    min-width: 100px;
+}
+
+/* تخصص - تگ‌ها */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.skill-tag {
+    padding: 0.5rem 1.2rem;
+    background-color: var(--bg-hover);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 50px; /* دایره‌ای ملایم */
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: 0.2s;
+}
+.skill-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* گالری */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+.gallery-img-box {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    border: 1px solid var(--border);
+}
+.gallery-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: brightness(0.8);
+}
+.gallery-img-box:hover img {
+    transform: scale(1.05);
+    filter: brightness(1);
+}
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s ease;
+}
+.gallery-img-box:hover .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* فرم تماس */
+.form-row {
+    margin-bottom: 1.5rem;
+}
+.form-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+.btn-main {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.btn-main:hover {
+    background-color: #2563eb;
+}
+/* توست */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--accent);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.4s var(--ease);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.toast.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    body { flex-direction: column; overflow: auto; }
+    .sidebar { 
+        width: 100%; 
+        height: auto; 
+        flex-direction: row; 
+        align-items: center; 
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid var(--border);
+        border-left: none;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    .brand { margin-bottom: 0; font-size: 1rem; }
+    .nav-menu { 
+        flex-direction: row; 
+        overflow-x: auto; 
+        padding-bottom: 5px;
+    }
+    .nav-item { white-space: nowrap; padding: 0.5rem; }
+    .nav-item.active { border-right: none; border-bottom: 2px solid var(--accent); border-radius: 4px 4px 0 0; }
+    .nav-item span { display: none; } /* مخفی کردن متن در موبایل */
+    .main-content { padding: 2rem 1.5rem; }
+    .profile-layout { flex-direction: column; align-items: center; text-align: center; }
+    .profile-img { width: 120px; height: 120px; }
+}
+.a_vip{
+    color: aqua;
+    font-size:15px;
+}
+iframe{
+    width: 100%;
+    height: 100%;
+ 
+}
+.uuid{
+    color: #be7fff;
+}
